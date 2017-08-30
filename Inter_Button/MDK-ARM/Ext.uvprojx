@@ -10,12 +10,12 @@
       <TargetName>Ext</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
+      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F407VGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.9.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.11.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IRAM(0x20000000,0x20000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -328,6 +328,9 @@
             <v6LangP>1</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER ,HSE_VALUE=8000000</Define>
@@ -345,6 +348,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -376,11 +380,6 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
-              <FileName>my_stm32f4_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\my_stm32f4_discovery.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\stm32f4xx_it.c</FilePath>
@@ -389,6 +388,31 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\UART.c</FilePath>
+            </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>sirc12_encode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sirc12_encode.c</FilePath>
+            </File>
+            <File>
+              <FileName>sirc12_decode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sirc12_decode.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -406,9 +430,9 @@
           <GroupName>CMSIS</GroupName>
           <Files>
             <File>
-              <FileName>startup_stm32f407xx.s</FileName>
+              <FileName>startup_stm32f429xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s</FilePath>
+              <FilePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429xx.s</FilePath>
             </File>
           </Files>
         </Group>

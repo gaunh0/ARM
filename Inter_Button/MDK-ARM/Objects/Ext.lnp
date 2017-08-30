@@ -1,9 +1,13 @@
---cpu Cortex-M4.fp
-".\objects\my_stm32f4_discovery.o"
+--cpu=Cortex-M4.fp
 ".\objects\stm32f4xx_it.o"
 ".\objects\main.o"
+".\objects\led.o"
+".\objects\uart.o"
+".\objects\delay.o"
+".\objects\sirc12_encode.o"
+".\objects\sirc12_decode.o"
 ".\objects\system_stm32f4xx.o"
-".\objects\startup_stm32f407xx.o"
+".\objects\startup_stm32f429xx.o"
 ".\objects\misc.o"
 ".\objects\stm32f4xx_adc.o"
 ".\objects\stm32f4xx_can.o"

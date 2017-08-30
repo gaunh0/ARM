@@ -24,7 +24,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
 #include "main.h"
-
+#include "sirc12_encode.h"
+#include "sirc12_decode.h"
+#include "led.h"
 /** @addtogroup STM32F4_Discovery_Peripheral_Examples
   * @{
   */
@@ -37,6 +39,9 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+extern uint32_t SIRC12_FramePulseWidthFormat[];
+uint32_t ICValue1 = 0;
+uint32_t ICValue2 = 0;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -148,15 +153,48 @@ void PendSV_Handler(void)
 /*  available peripheral interrupt handler's name please refer to the startup */
 /*  file (startup_stm32f4xx.s).                                               */
 /******************************************************************************/
-  void EXTI0_IRQHandler(void)
-  {
-    if(EXTI_GetITStatus(EXTI_Line0) != RESET)
+/**
+  * @brief  This function handles TIM17 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void TIM4_IRQHandler(void)
+{
+  
+  SIRC12_Encode_SignalGenerate(SIRC12_FramePulseWidthFormat);
+	
+  LED_Togg(LED_Red);
+  /* Clear TIM16 update interrupt */
+  TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+}
+void TIM2_IRQHandler(void)
+{
+  /* Clear the TIM2 Update pending bit */
+  TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+      
+    /* IC1 Interrupt */
+    if((TIM_GetFlagStatus(IR_TIM, TIM_FLAG_CC2) != RESET))
     {
-      GPIO_ToggleBits(GPIOD,GPIO_Pin_12);
-      EXTI->PR = EXTI_Line0;
+      TIM_ClearFlag(IR_TIM, TIM_FLAG_CC2);
+      /* Get the Input Capture value */
+      ICValue2 = TIM_GetCapture2(IR_TIM);
+      SIRC_DataSampling(ICValue1, ICValue2); 
+    }  /* IC2 Interrupt*/   
+    else  if((TIM_GetFlagStatus(IR_TIM, TIM_FLAG_CC1) != RESET))
+    {
+      TIM_ClearFlag(IR_TIM, TIM_FLAG_CC1);
+      /* Get the Input Capture value */
+      ICValue1 = TIM_GetCapture1(IR_TIM);
+    } 
+    /* Checks whether the IR_TIM flag is set or not. */
+    else if ((TIM_GetFlagStatus(IR_TIM, TIM_FLAG_Update) != RESET))
+    { 
+      /* Clears the IR_TIM's pending flags*/
+      TIM_ClearFlag(IR_TIM, TIM_FLAG_Update);
+      
+      SIRC_ResetPacket();
     }
-  }
-
+}
 /**
   * @brief  This function handles PPP interrupt request.
   * @param  None

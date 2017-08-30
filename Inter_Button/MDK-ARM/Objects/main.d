@@ -1,9 +1,12 @@
 .\objects\main.o: main.c
+.\objects\main.o: main.h
+.\objects\main.o: ..\..\Inter_Button\led.h
+.\objects\main.o: ..\MDK-ARM\main.h
 .\objects\main.o: ..\..\Inter_Button\stm32f4xx_conf.h
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
 .\objects\main.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cm4.h
-.\objects\main.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
@@ -34,6 +37,6 @@
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
-.\objects\main.o: main.h
-.\objects\main.o: ..\..\Inter_Button\my_stm32f4_discovery.h
-.\objects\main.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: ..\..\Inter_Button\Delay.h
+.\objects\main.o: ..\..\Inter_Button\sirc12_encode.h
+.\objects\main.o: ..\..\Inter_Button\sirc12_decode.h
